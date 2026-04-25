@@ -15,8 +15,7 @@ def main():
     events["timestamp"] = pd.to_datetime(events["timestamp"])
     transactions["timestamp"] = pd.to_datetime(transactions["timestamp"])
 
-    # Ignore campaign_id = 0 for campaign-level analysis
-    campaign_events = events[events["campaign_id"] != 0].copy()
+    campaign_events = events.copy()
 
     # Aggregate event behavior by customer-campaign
     event_agg = (
