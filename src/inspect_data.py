@@ -47,6 +47,12 @@ def inspect_csv(file_path: Path) -> None:
             f.write(f"## {file_path.name}\n\n")
             f.write(null_counts.to_markdown())
             f.write("\n\n")
+
+    #save .head(5) of each table to a md file in the docs folder
+    with open(PROJECT_ROOT / "docs" / "data_samples.md", "a") as f:
+        f.write(f"## {file_path.name}\n\n")
+        f.write(df.head().to_markdown())
+        f.write("\n\n")
     
 
 def main():
