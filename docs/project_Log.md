@@ -24,5 +24,10 @@ A secondary goal of this project is to practice building a more industry-style a
 
 Same `customer_id` can appear under multiple experiment groups across different events or campaigns. Therefore, the customer is not a clean unit of random assignment. If we aggregate only at the customer level, we may mix different treatments and outcomes for the same customer. 
 
-Distinct `customer_id`, `experiment_group` pair also contains different `converted` values. This suggests that we should consider `converted` (transaction made within the event time) for each distinct `event_id`. 
+Distinct `customer_id`, `experiment_group` pair also contains different `converted` values. 
 
+This suggests that we should consider `converted` (transaction made within the event time) for each distinct `event_id`. 
+
+The processed .csv I created yesterday cannot be used. I need a new .csv with event_id, timestamp. 
+
+But how do I define if each tx(transaction) is caused by treatment? The events table contains `campaign_id`, `time_stamp`, `experiment_group`, should I filter those transactions made within a period after `time_stamp` in event? 

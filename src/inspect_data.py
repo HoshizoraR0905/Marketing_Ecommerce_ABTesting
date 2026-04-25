@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-RAW_DATA_DIR = PROJECT_ROOT / "data"
+RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 
 def inspect_csv(file_path: Path) -> None:
     print("=" * 80)
@@ -36,6 +36,18 @@ def inspect_csv(file_path: Path) -> None:
 
     print("\n")
 
+    #print out and save null value counts for each table
+    null_counts = df.isna().sum()
+    null_counts = null_counts[null_counts > 0].sort_values(ascending=False)
+    if not null_counts.empty:
+        print("Null value counts for each column:")
+        print(null_counts)
+        #save to a md file in the docs folder
+        with open(PROJECT_ROOT / "docs" / "null_value_counts.md", "a") as f:
+            f.write(f"## {file_path.name}\n\n")
+            f.write(null_counts.to_markdown())
+            f.write("\n\n")
+    
 
 def main():
     csv_files = list(RAW_DATA_DIR.glob("*.csv"))
