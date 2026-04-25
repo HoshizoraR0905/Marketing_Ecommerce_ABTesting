@@ -16,9 +16,6 @@ A secondary goal of this project is to practice building a more industry-style a
 
 ## 2026-04-25 
 
-### Work completed
-- 
-
 ### Issues
 - The dataset contains both `experiment_group` and `campaign_id`, which represent different concepts. `experiment_group` has values as Control, Variant_A, or Variant_B, while `campaign_id` identifies the marketing campaign context. 
 
@@ -31,3 +28,7 @@ This suggests that we should consider `converted` (transaction made within the e
 The processed .csv I created yesterday cannot be used. I need a new .csv with event_id, timestamp. 
 
 But how do I define if each tx(transaction) is caused by treatment? The events table contains `campaign_id`, `time_stamp`, `experiment_group`, should I filter those transactions made within a period after `time_stamp` in event? 
+
+### Work completed
+- AB testing conducted on conversion rate of 2 days after each event timestamp. 
+- With z-stats being 11.78 and 34.50, p-value being 4e-32 and 7e-261, both Variant_A and Variant_B are statistically significant compared to control group. 
