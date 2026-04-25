@@ -4,7 +4,7 @@
 
 This project analyzes an e-commerce marketing dataset to evaluate the effectiveness of experimental campaign variants. The goal is to build an industry-style analytics workflow rather than a simple notebook-based assignment.
 
-The project focuses on three main questions:
+The project currently focuses on three main questions:
 
 1. How should the A/B testing sample unit be defined from event-level data?
 2. Do Variant_A and Variant_B improve conversion compared with Control?
@@ -12,7 +12,9 @@ The project focuses on three main questions:
 
 ## Dataset Structure
 
-The raw data contains multiple related tables:
+The raw data contains multiple related tables: 
+
+A preview of each table can be found in docs/data_samples.md. 
 
 - `customers.csv`: customer profile information, including country, age, gender, loyalty tier, and acquisition channel.
 - `events.csv`: event-level customer behavior, including session ID, timestamp, event type, campaign ID, and experiment group.
@@ -28,7 +30,7 @@ A direct customer-level A/B test is not appropriate because the same customer ca
 
 Also, a session may contain multiple event records, and in some cases may include multiple experiment group labels. Therefore, treating raw event rows as independent observations would overcount user activity and bias the analysis.
 
-To address this, I define the main A/B testing unit as a **first-touch session-campaign exposure**.
+To address this, I firstly conducted a general A/B test on the dataset before diving into details.
 
 ## A/B Testing Definition
 
@@ -39,11 +41,9 @@ For the main A/B test:
   - Variant_A
   - Variant_B
 
-- **Sample unit**: one session-campaign pair, assigned by the first eligible campaign exposure.
+- **Sample unit**: one session, assigned by the first eligible treatment exposure.
 
-- **Conversion outcome**: a session-campaign pair is counted as converted if a purchase event occurs after the first exposure within the same session-campaign pair.
-
-This first-touch definition avoids counting multiple event rows from the same session as separate samples and gives a cleaner exposure-level A/B testing framework.
+- **Conversion outcome**: a session is counted as converted if a purchase event occurs within the same session.
 
 ## General A/B Test Results
 
