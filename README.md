@@ -114,7 +114,9 @@ Marketing_ECommerce_ABtest/
 │   └── processed/
 │
 ├── docs/
-│   └── null_value_counts.md
+│   ├── data_samples.md
+│   ├── null_value_counts.md
+│   └── project_Log.md
 │
 ├── outputs/
 │   ├── figures/
@@ -124,7 +126,7 @@ Marketing_ECommerce_ABtest/
 │   ├── inspect_data.py
 │   ├── AB_test.py
 │   ├── run_AB_general.py
-│   ├── run_AB_customer_segments.py
+│   ├── run_AB_segments.py
 │   └── ...
 │
 ├── README.md
